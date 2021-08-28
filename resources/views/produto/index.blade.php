@@ -49,7 +49,7 @@
                 <td>{{ $value->nome }}</td>
                 <td>{{ $value->descricao }}</td>
                 <td>
-                    <a href="{{ URL::to('produto/' . $value->id) }}" class="btn btn-outline-primary">Visualizar</a>
+                    <a href="{{ URL::to('produto/' . $value->id) }}" class="btn btn-outline-primary">Visualizarr</a>
                     
                 </td>
                 <td>
