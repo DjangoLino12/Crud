@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Produto;
 
+
 class ProdutoSeeder extends Seeder
 {
     /**
@@ -17,13 +18,16 @@ class ProdutoSeeder extends Seeder
 
         Produto::create([
             'nome' => 'Brigadeiro',
-            'descricao' => 'Doce muito absurdamente doce'
+            'descricao' => 'Doce muito absurdamente doce',
+            'categoria_id' =>1
         ]);
 
         Produto::create([
-            'nome' => 'Cajuzinho',
-            'descricao' => 'Doce de amendoim'
+            'nome' => 'Coxinha',
+            'descricao' => 'Salgado de frango',
+            'categoria_id' =>2
         ]);
+
 
     }
 }

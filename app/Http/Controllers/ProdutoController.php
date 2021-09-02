@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,10 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        return view('produto.create');
+        // 
+
+        $categorias = Categoria::pluck('nome', 'id');
+        return view('produto.create', ['categorias' => $categorias]);
     }
 
     /**
@@ -46,16 +50,19 @@ class ProdutoController extends Controller
             'nome.required' => 'O campo nome é obrigatório!',
             'nome.min' => 'O campo nome precisa ter no mínimo :min caracteres!',
             'descricao.required' => 'O campo descrição é obrigatório!',
+            'categoria_id.required' => 'O campo categoria é obrigatório!',
         ];
 
         $validateData = $request->validate([
             'nome'      => 'required|min:7',
             'descricao' => 'required',
+            'categoria_id' => 'required',
         ], $message);
 
         $produto = new Produto;
         $produto->nome      = $request->nome;
         $produto->descricao = $request->descricao;
+        $produto->categoria_id = $request->categoria_id;
         $produto->save();
 
         return redirect()->route('produto.index')->with('message', 'Produto criado com sucesso!');
@@ -84,8 +91,9 @@ class ProdutoController extends Controller
     public function edit($id)
     {
         //dd("editar o registro{$id}");
+        $categoria = Categoria::pluck('nome', 'id');
         $produto = Produto::findOrFail($id);
-        return view('produto.edit', ['produto' => $produto]);
+        return view('produto.edit', ['produto' => $produto, 'categorias' => $categorias]);
 
 
     }
@@ -104,16 +112,20 @@ class ProdutoController extends Controller
             'nome.required'      => 'O campo nome é obrigatório!',
             'nome.min'           => 'O campo nome precisa ter no mínimo :min caracteres!',
             'descricao.required' => 'O campo descrição é obrigatório!',
+            'categoria_id.required' => 'O campo categoria é obrigatório!',
         ];
 
         $validateData   = $request->validate([
             'nome'      => 'required|min:7',
             'descricao' => 'required',
+            'categoria_id' => 'required',
+
         ], $message);
 
         $produto            = Produto::findOrFail($id);
         $produto->nome      = $request->nome;
         $produto->descricao = $request->descricao;
+        $produto->categoria_id = $request->categoria_id;
         $produto->save();
 
         return redirect()->route('produto.index')->with('message', 'Produto editado com sucesso!');

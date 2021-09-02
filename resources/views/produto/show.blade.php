@@ -10,6 +10,7 @@
     <h2>visualizar</h2>
 
 <p>ID:          {{$produto->id}}         </p>
+<p>CATEGORIA:   {{$produto->categoria->nome}}         </p>
 <p>NOME:        {{$produto->nome}}       </p>
 <p>DESCRIÇÃO:   {{$produto->descricao}}  </p>
 <p>CRIAÇÃO:     {{Carbon\Carbon::parse($produto->created_at)->format('d/m/y H:i') }} </p>

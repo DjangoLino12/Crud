@@ -21,7 +21,10 @@
 
     {{ Form::model($produto, array('route' => array('produto.update', $produto->id), 'method' => 'PUT')) }}
 
-    {{ Form::label('nome', 'Nome') }}
+    {{ Form::label('categoria', 'Categoria') }}
+    {{ Form::select('categoria_id', $categorias) }}
+    <br>
+
     {{ Form::text('nome', $produto->nome) }}
     <br/>
     {{ Form::label('descricao', 'Descrição') }}

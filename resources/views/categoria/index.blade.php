@@ -15,7 +15,7 @@
     <!--
     abrir tabela
     colocar cabeçalho
-    listar produtos
+    listar categorias
     fechar tabela
     -->
 
@@ -26,7 +26,7 @@
 
     <script>
         function ConfirmDelete() {
-            return confirm('Deseja excluir este produto?');
+            return confirm('Deseja excluir este categoria?');
         }
     </script>
 
@@ -34,7 +34,6 @@
         <thead class="thead-dark">
             <tr>
                 <th>id</th>
-                <th>categoria</th>
                 <th>nome</th>
                 <th>descrição</th>
                 <th></th>
@@ -44,23 +43,22 @@
         </thead>
         <tbody>
 
-          @foreach($produtos as $key => $value)
+          @foreach($categorias as $key => $value)
             <tr>
                 <td>{{ $value->id }}</td>
-                <td>{{ $value->categoria->nome }}</td>
                 <td>{{ $value->nome }}</td>
-                <td>{{ $value->descricao }}</td>
+                {{-- <td>{{ $value->descricao }}</td> --}}
                 <td>
-                    <a href="{{ URL::to('produto/' . $value->id) }}" class="btn btn-outline-primary">Visualizarr</a>
+                    <a href="{{ URL::to('categoria/' . $value->id) }}" class="btn btn-outline-primary">Visualizar</a>
                     
                 </td>
                 <td>
-                    <a href="{{ URL::to('produto/' . $value->id . '/edit') }}" class="btn btn-outline-warning">Editar</a>
+                    <a href="{{ URL::to('categoria/' . $value->id . '/edit') }}" class="btn btn-outline-warning">Editar</a>
                     
                 </td>
                 <td>
 
-                    {{ Form::open(array('url'=>'produto/' . $value->id, 'onsubmit' => 'return ConfirmDelete()')) }}
+                    {{ Form::open(array('url'=>'categoria/' . $value->id, 'onsubmit' => 'return ConfirmDelete()')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
                     {{ Form::submit('Excluir', array('class'=> 'btn btn-outline-danger')) }}
                     {{ Form::close() }}
@@ -73,9 +71,9 @@
 
         </tbody>
     </table>
-    <a href="{{ URL::to('produto/create') }}" 
+    <a href="{{ URL::to('categoria/create') }}" 
     class="btn btn-success"
-    style="border-radius: 0px 1px 1px 0px;"><h2>Criar novo produto</h2>
+    style="border-radius: 0px 1px 1px 0px;"><h2>Criar novo categoria</h2>
 </a>
 
 
